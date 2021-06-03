@@ -18,4 +18,6 @@ public class Amigo extends Persona {
     public String getFacebook() {
         return facebook;
     }
+
+
 }
