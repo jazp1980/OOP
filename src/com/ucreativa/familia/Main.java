@@ -1,10 +1,9 @@
-package com.ucreativa;
+package com.ucreativa.familia;
 
-import com.ucreativa.familia.*;
-import com.ucreativa.vacunacion.Amigo;
-import com.ucreativa.vacunacion.BitacoraVacunas;
-import com.ucreativa.vacunacion.Familiar;
-import com.ucreativa.vacunacion.Persona;
+import com.ucreativa.vacunacion.entities.Amigo;
+import com.ucreativa.vacunacion.entities.BitacoraVacunas;
+import com.ucreativa.vacunacion.entities.Familiar;
+import com.ucreativa.vacunacion.entities.Persona;
 
 import java.util.ArrayList;
 import java.util.Date;
