@@ -9,9 +9,9 @@ import java.awt.event.ActionEvent;
 
 public class FrontEnd extends JFrame {
 
-    public FrontEnd(String titulo){
+    public FrontEnd(String titulo) {
         super(titulo);
-                    }
+    }
 
     public void Build() {
         this.ConstruccionPantalla();
@@ -20,21 +20,21 @@ public class FrontEnd extends JFrame {
 
     }
 
-    private void ConstruccionPantalla(){
+    private void ConstruccionPantalla() {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        super.setSize(400,200);
-        super.setLayout(new GridLayout(5,2));
+        super.setSize(400, 200);
+        super.setLayout(new GridLayout(5, 2));
     }
 
-    private void AgregarComponente(Component componente){
+    private void AgregarComponente(Component componente) {
         super.getContentPane().add(componente);
     }
 
-    private void CrearComponentes (){
+    private void CrearComponentes() {
 
         //Crear labels
         JLabel lblnombre = new JLabel("Nombre");
-        JLabel lblcedula= new JLabel("Cedula");
+        JLabel lblcedula = new JLabel("Cedula");
         JLabel lbledad = new JLabel("Edad");
         JLabel lblriesgo = new JLabel("Riesgo");
         JLabel lblisamigo = new JLabel("Es Amigo");
@@ -58,19 +58,35 @@ public class FrontEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BitacoraService service = new BitacoraService(new FileRepository());
-                service.save(txtnombre.getText(), txtcedula.getText(), txtedad.getText(), txtriesgo.isSelected(),
-                        txtesamigo.isSelected(),txtrelacion.getText(),txtfacebook.getText(),txtparentesco.getText(),
-                        txtmarca.getText());
-                txtnombre.setText("");
-                txtcedula.setText("");
-                txtedad.setText("");
-                txtriesgo.setText("");
-                txtesamigo.setText("");
-                txtrelacion.setText("");
-                txtfacebook.setText("");
-                txtparentesco.setText("");
-                txtmarca.setText("");
+                try {
+                    service.save(txtnombre.getText(),
+                            txtcedula.getText(),
+                            txtedad.getText(),
+                            txtriesgo.isSelected(),
+                            txtesamigo.isSelected(),
+                            txtrelacion.getText(),
+                            txtfacebook.getText(),
+                            txtparentesco.getText(),
+                            txtmarca.getText());
+                            txtnombre.setText("");
+                            txtcedula.setText("");
+                            txtedad.setText("");
+                            txtriesgo.setText("");
+                            txtesamigo.setText("");
+                            txtrelacion.setText("");
+                            txtfacebook.setText("");
+                            txtparentesco.setText("");
+                            txtmarca.setText("");
+
+                    String reporte = String.join("\n", service.get());
+                    JOptionPane.showMessageDialog(((JButton) e.getSource()).getParent(), reporte);
+                } catch (ErrorEnEdadException error) {
+                    JOptionPane.showMessageDialog(((JButton) e.getSource()).getParent(), error.getMessage());
+                }
+
+
             }
+
         });
 
         this.AgregarComponente(lblnombre);
